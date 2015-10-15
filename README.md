@@ -10,6 +10,7 @@ dpkg --add-architecture i386 && apt-get update && apt-get install libpam0g:i386 
 Flag descriptions:
 
 DOMAIN - domain you are attacking - if its local, just specify workgroup
+
 USERNAME - username to authenticate on the remote Windows system
 PASSWORD - password or password hash lm:ntlm to use on the remote Windows system
 CIDR_RANGE,CIDR_RANGE or ips.txt - you can specify a single ip, a CIDR range (192.168.1.1/24) or multiple CIDRs such as 192.168.1.1/24,192.168.2.1/24. You can also specify a file (ex: file.txt) which has single IP addresses on a new line. 
