@@ -10,13 +10,19 @@ dpkg --add-architecture i386 && apt-get update && apt-get install libpam0g:i386 
 Flags and descriptions:
 
 domain                 Domain you are attacking. If its local, just specify workgroup.
+
 username               Username to authenticate on the remote Windows system.
+
 password               Password or password hash LM:NTLM to use on the remote Windows system.
+
 CIDR range or file     Specify a single IP, CIDR range (10.0.1.1/24) or multiple CIDRs: 10.0.1.1/24,10.0.2.1/24. 
                           You can also specify a file (ex: ips.txt) that contains a single IP addresses on each line. 
 payload                Metasploit payload, example: windows/meterpreter/reverse_tcp
+
 LHOST                  Reverse shell IP address.
+
 LPORT                  Reverse shell listening port.
+
 optional: NO           Specify no if you do not want to create a listener. This is useful if you already have a listener 
                           established. If you do not specify a value, it will automatically create a listener for you.
 
