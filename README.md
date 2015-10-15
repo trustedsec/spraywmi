@@ -1,5 +1,12 @@
 SprayWMI is a method for mass spraying unicorn powershell injection to CIDR notations.
 
+Written by David Kennedy @TrustedSec
+Special thanks: Justin Elze and Larry Spohn
+
+# Initial Blog: https://www.trustedsec.com/june-2015/no_psexec_needed/
+# if you have trouble with this on 64 bit - try:
+# dpkg --add-architecture i386 && apt-get update && apt-get install libpam0g:i386 && apt-get install libpopt0:i386
+
 Flag descriptions:
 
 DOMAIN - domain you are attacking - if its local, just specify workgroup

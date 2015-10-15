@@ -1,4 +1,12 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+version 0.2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* added wmis pre-compiled binary in default install
+* added automatic download and usage of unicorn
+* added automatic detection of unicorn paths 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 version 0.1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
