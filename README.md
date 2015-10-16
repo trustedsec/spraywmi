@@ -33,7 +33,7 @@ root@stronghold:/home/relik# python spraywmi.py TS kennedy-test complexP255w0rd!
 
 [*] Waiting for the listener to start first before we continue.
 
-[*] Be patient, Metaploit takes a little bit to start.
+[*] Be patient, Metasploit takes a little bit to start.
 
 [*] Sweeping targets for open TCP port 135 first, then moving through. Be patient.
 
