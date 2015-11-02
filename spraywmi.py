@@ -134,7 +134,7 @@ if not os.path.isfile(cidr):
 
 	# Sweep networks first.
 	print ("[*] Sweeping targets for open TCP port 135 first, then moving through. Be patient.")
-	subprocess.Popen("nmap -Pn -n -T5 --open -p135 -oG - %s | awk '$NF~/msrpc/{print $2}' > openwmi.txt" % (cidr), shell=True).wait()
+	subprocess.Popen("nmap -Pn -n --open -p135 -oG - %s | awk '$NF~/msrpc/{print $2}' > openwmi.txt" % (cidr), shell=True).wait()
 
 	# Next we create the WMI command.
 	fileopen = file("openwmi.txt", "r").readlines()
