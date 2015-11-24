@@ -1,4 +1,16 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+version 0.4
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* added better handling around if WMIS was broken and not properly loading
+* added a better description on installing depends if not installed
+* removed an extra print statement that was causing an extra IP to be printed
+* moved python-pexpect checker to beginning of code base
+* removed verbose flag - no longer needed
+* added error handling and verbosity when not able to successfully log in
+* added better checks and msf handling 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 version 0.3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

